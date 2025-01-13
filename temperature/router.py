@@ -19,7 +19,7 @@ async def get_temperatures(db: AsyncSession = Depends(get_db)):
     response_model=schemas.Temperature,
 )
 async def get_temperature(city_id: int, db: AsyncSession = Depends(get_db)):
-    temperature = crud.get_temperature_by_city(city_id=city_id, db=db)
+    temperature = await crud.get_temperature_by_city(city_id=city_id, db=db)
     if not temperature:
         raise HTTPException(status_code=404, detail="Temperature is not found for this city")
 
